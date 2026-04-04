@@ -1,91 +1,63 @@
-# Credit-Card-Default-Prediction-PySpark
-# Credit Card Default Prediction using Logistic Regression
+# Predictive Modeling of Credit Scores Through Logistic Regression
 
 ## Project Overview
-This project predicts whether a credit card customer will default on their next payment using a Logistic Regression model built with PySpark.
 
-**Student:** Rakesh Ramavath  
-**Program:** BCA 3rd Year - 5th Semester  
-**University:** Amity University Online  
-**Project:** TCS iON Industry Project  
+This project is about predicting whether a credit card customer will default on their next payment or not. Credit card default is a big problem for banks and financial companies because they lose a lot of money when customers don't pay back. I built a machine learning model that can predict this before it happens.
 
----
+I used the UCI Credit Card Default dataset which has 30,000 customer records from a Taiwan bank. The dataset has 24 features including credit limit, age, education, marriage status, payment history for 6 months and bill amounts for 6 months.
 
-## Dataset
-- **Source:** UCI Machine Learning Repository
-- **Records:** 30,000 credit card customers
-- **Features:** 23 input features + 1 target column
-- **Default Rate:** 22.12%
+I built a Logistic Regression model using PySpark on Google Colab. Before building the model I cleaned the data, handled the class imbalance using class weights, applied One Hot Encoding for categorical columns and used PCA to reduce features. I used Pipeline to chain all steps together and CrossValidator to automatically find the best hyperparameters.
 
----
+The model achieved 73.21% AUC-ROC score on test data. The biggest finding was that PAY_1 — whether someone paid last month — is by far the strongest signal of whether they will default next month.
 
-## Tools Used
-- Google Colab
-- PySpark 4.0.2
-- Python 3.12
-- Pandas, Numpy
-- Matplotlib, Seaborn
-- Scikit-learn
+## Key Features
 
----
+- Distributed Processing: Utilizes PySpark MLlib to handle 30,000 customer records
+- Class Imbalance Handling: Applied class weights to handle 78% vs 22% imbalance
+- Feature Engineering: Used VectorAssembler to combine 16 selected features
+- Dimensionality Reduction: Applied PCA to reduce features from 16 to 10 components
+- Predictive Modeling: Uses Logistic Regression for binary classification
+- Hyperparameter Tuning: CrossValidator tested 6 combinations with 5 fold cross validation
+- Evaluation: Validated using AUC-ROC, Accuracy, Precision, Recall and F1 Score
 
-## Project Steps
-1. Data Loading and Cleaning
-2. Handling Class Imbalance with Class Weights
-3. One Hot Encoding for Categorical Columns
-4. Feature Selection using Correlation Threshold
-5. PCA - Dimensionality Reduction
-6. Train Test Split (80/20)
-7. Pipeline with VectorAssembler + StandardScaler + LogisticRegression
-8. Hyperparameter Tuning with CrossValidator
-9. Model Evaluation
-10. Model Saving with Timestamp Versioning
+## Tools and Technologies
 
----
+- Language: Python 3.12
+- Library: PySpark 4.0.2 (MLlib, SQL)
+- Environment: Google Colab
+- Dataset: UCI Credit Card Default Dataset (30,000 records)
+- Other Libraries: Pandas, Numpy, Matplotlib, Seaborn, Scikit-learn
 
 ## Results
-| Metric | Score |
-|---|---|
+
+| Metric | Value |
+|--------|-------|
+| Algorithm | Logistic Regression |
 | AUC-ROC | 0.7321 |
 | Accuracy | 68.25% |
 | Precision | 76.66% |
 | Recall | 68.25% |
 | F1 Score | 70.69% |
-
----
+| Defaulters Caught | 864 out of 1303 (66.31%) |
 
 ## How to Run
 
-### Option 1 - Google Colab (Recommended)
-- Open the .ipynb file in Google Colab
-- Run all cells in order
-- Upload the dataset when prompted
+1. Open the [Google Colab Notebook](https://colab.research.google.com/drive/16CAHkWvlYYGMoKrdWv9urL3FC-mgEPz8?usp=sharing)
+2. Upload the dataset file when prompted
+3. Run all cells in order from top to bottom
+4. ## Project Structure
 
-### Option 2 - Local Machine
-- Install Python 3.6+
-- Run: pip install pyspark pandas matplotlib seaborn scikit-learn
-- Remove the google.colab import cell
-- Change file path to your local path
-- Run in Jupyter Notebook
+    TCS-IonProject Code.ipynb    - Main project notebook
+    TCS-IonProject Report.docx   - Project report
+    class_distribution.png       - Class distribution chart
+    confusion_matrix.png         - Confusion matrix chart
+    correlation_heatmap.png      - Feature correlation heatmap
+    feature_coefficients.png     - Feature importance chart
+    roc_curve.png                - ROC curve chart
+    sigmoid_function.png         - Sigmoid function chart
+    README.md                    - Project documentation
 
-### Option 3 - Databricks
-- Upload notebook to Databricks
-- Remove pip install pyspark cell
-- Remove google.colab upload cell
-- SparkSession already exists in Databricks
-- Upload dataset to DBFS first
+## Credits
 
----
-
-## Charts Generated
-1. Class Distribution
-2. Correlation Heatmap
-3. Feature Coefficients
-4. Sigmoid Function
-5. ROC Curve
-6. Confusion Matrix
-
----
-
-## Key Finding
-PAY_1 (last month payment status) is the strongest predictor of credit default with a coefficient of 0.5053. If a customer missed last month's payment, they are very likely to default next month.Predicting credit card default using Logistic Regression with PySpark - TCS iON Industry Project
+- Author: Rakesh Ramavath
+- Organization: TCS iON Industry Project
