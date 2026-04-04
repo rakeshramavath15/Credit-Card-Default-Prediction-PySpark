@@ -8,7 +8,7 @@ I used the UCI Credit Card Default dataset which has 30,000 customer records fro
 
 I built a Logistic Regression model using PySpark on Google Colab. Before building the model I cleaned the data, handled the class imbalance using class weights, applied One Hot Encoding for categorical columns and used PCA to reduce features. I used Pipeline to chain all steps together and CrossValidator to automatically find the best hyperparameters.
 
-The model achieved 73.21% AUC-ROC score on test data. The biggest finding was that PAY_1 — whether someone paid last month — is by far the strongest signal of whether they will default next month.
+The model achieved 73.21% AUC-ROC score on test data. The biggest finding was that PAY_1  whether someone paid last month is by far the strongest signal of whether they will default next month.
 
 ## Key Features
 
